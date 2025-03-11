@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'users',  # Add this line
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,9 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://cinema-frontend.onrender.com",  # Update this with your actual frontend URL
 ]
+
+# Custom user model
+AUTH_USER_MODEL = 'users.User'  # Add this line
 
 # Security settings
 SECURE_SSL_REDIRECT = True

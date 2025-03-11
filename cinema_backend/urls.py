@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from users.views import login_view, list_users, create_user
+from users.views import login_view, list_users, create_user, signup_view
 from movies.views import MovieViewSet, ShowingViewSet, TheaterViewSet, today_showings, book_showing, user_bookings, remove_test_showings
 from inventory.views import SnackItemViewSet
 
@@ -37,4 +37,5 @@ urlpatterns = [
     path('api/movies/remove-test-showings/', remove_test_showings),
     path('api/users/', list_users),
     path('api/users/create/', create_user),
+    path('api/users/signup/', signup_view),
 ]

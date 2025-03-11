@@ -84,3 +84,35 @@ def list_users(request):
             {'error': f'Failed to fetch users: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def signup_view(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    email = request.data.get('email')
+    is_staff_member = request.data.get('is_staff_member', False)
+    
+    if User.objects.filter(username=username).exists():
+        return Response({'error': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            is_staff_member=is_staff_member,
+            is_staff=is_staff_member  # Set is_staff same as is_staff_member
+        )
+        
+        # Create token for new user
+        token, created = Token.objects.get_or_create(user=user)
+        
+        return Response({
+            'success': True,
+            'is_staff_member': user.is_staff_member,
+            'username': user.username,
+            'token': token.key
+        })
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

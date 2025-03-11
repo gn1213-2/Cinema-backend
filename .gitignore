@@ -33,3 +33,4 @@ media/
 .vscode/
 *.swp
 *.swo
+!db.sqlite3

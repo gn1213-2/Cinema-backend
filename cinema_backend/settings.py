@@ -80,7 +80,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "https://cinema-frontend.onrender.com",  # Update this with your actual frontend URL
+    "https://cinema-frontend-gc9m.onrender.com",  # Update this with your actual frontend URL
 ]
 
 # Custom user model
